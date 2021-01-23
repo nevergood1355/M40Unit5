@@ -20,13 +20,11 @@ class MyFragment() : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val ava = view.findViewById<ImageView>(R.id.icon)
-        val textPosts = view.findViewById<TextView>(R.id.text_posts)
-        val textFollowers = view.findViewById<TextView>(R.id.text_followers)
-        val textFollowing = view.findViewById<TextView>(R.id.text_following)
-        ava.setImageResource(screen1Presenter.m.iconId)
-        textPosts.text = "${screen1Presenter.m.posts}"
-        textFollowers.text = "${screen1Presenter.m.followers}"
-        textFollowing.text = "${screen1Presenter.m.following}"
+        screen1Presenter.attachView(this)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        screen1Presenter.detach()
     }
 }

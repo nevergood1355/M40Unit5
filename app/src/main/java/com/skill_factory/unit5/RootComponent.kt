@@ -1,6 +1,7 @@
 package com.skill_factory.unit5
 
-import android.content.Context
+import android.app.Activity
+import android.app.Application
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Scope
@@ -18,10 +19,10 @@ interface Screen1Injector {
 @Singleton
 @Component(modules = [RootModule::class])
 interface RootComponent : Screen1Injector {
-    fun inject(a: MainActivity);
+    fun inject(a: MainActivity)
 
     @Component.Factory
     interface Factory {
-        fun create(@BindsInstance context: Context): RootComponent
+        fun create(@BindsInstance context: Application): RootComponent
     }
 }
