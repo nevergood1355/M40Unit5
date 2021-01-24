@@ -8,9 +8,6 @@ import kotlin.random.Random
 
 @Module
 interface Screen1Module {
-    @ScreenScope
-    @Binds
-    fun bindScreen1View(view: Screen1View) : ScreenView
 
     @ScreenScope
     @Binds

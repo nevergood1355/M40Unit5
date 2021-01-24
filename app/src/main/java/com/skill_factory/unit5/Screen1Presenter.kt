@@ -1,21 +1,27 @@
 package com.skill_factory.unit5
 
+import androidx.annotation.DrawableRes
 import javax.inject.Inject
 
 
 @ScreenScope
 interface BasePresenter {
-    fun attachView(f: MyFragment)
+    fun attachView(view: ScreenView)
     fun detach()
+}
+
+interface ScreenView {
+    fun setIcon(@DrawableRes idIcon: Int)
+    fun setPosts(text: String)
+    fun setFollowers(text: String)
+    fun setFollowing(text: String)
 }
 
 @ScreenScope
 class Screen1Presenter @Inject constructor(private val m: AccountInfo) : BasePresenter {
-    private var f: MyFragment? = null
+    var view: ScreenView? = null
 
-    override fun attachView(f: MyFragment) {
-        this.f = f
-        val view = Screen1View(f)
+    override fun attachView(view: ScreenView) {
         view.setIcon(m.iconId)
         view.setPosts("${m.posts}")
         view.setFollowing("${m.followers}")
@@ -23,6 +29,6 @@ class Screen1Presenter @Inject constructor(private val m: AccountInfo) : BasePre
     }
 
     override fun detach() {
-        this.f = null
+        view = null
     }
 }
