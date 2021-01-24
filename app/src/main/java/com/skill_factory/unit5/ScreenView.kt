@@ -1,18 +1,10 @@
 package com.skill_factory.unit5
 
-import android.accounts.Account
-import android.app.Activity
-import android.app.Application
-import android.content.Context
-import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.DrawableRes
 import androidx.annotation.IdRes
-import androidx.fragment.app.Fragment
-import javax.inject.Inject
 
-@ScreenScope
 interface ScreenView {
     fun setIcon(@DrawableRes idIcon: Int)
     fun setPosts(text: String)
@@ -20,8 +12,7 @@ interface ScreenView {
     fun setFollowing(text: String)
 }
 
-@ScreenScope
-class Screen1View @Inject constructor(val f: MyFragment): ScreenView {
+class Screen1View (val f: MyFragment): ScreenView {
 
     override fun setIcon(idIcon: Int) {
         f.requireView().findViewById<ImageView>(R.id.icon).setImageResource(idIcon)

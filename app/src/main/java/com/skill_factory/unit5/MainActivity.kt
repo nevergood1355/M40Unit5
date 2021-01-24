@@ -13,7 +13,7 @@ import javax.inject.Singleton
 class MyApp : Application() {
     val root = DaggerRootComponent.factory().create(this)
     val screen1 = MyFragment().apply { retainInstance = true }
-    val screen1Component by lazy { root.screen1Component.fragment(screen1).build() }
+    val screen1Component by lazy { root.screen1Component.build() }
 }
 
 class MainActivity : AppCompatActivity() {

@@ -11,8 +11,7 @@ interface Screen1Component {
 
     @Subcomponent.Builder
     interface Builder {
-        @BindsInstance
-        fun fragment(fragment: MyFragment): Screen1Component.Builder
+
         fun build(): Screen1Component
     }
 

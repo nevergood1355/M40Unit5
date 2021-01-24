@@ -10,11 +10,12 @@ interface BasePresenter {
 }
 
 @ScreenScope
-class Screen1Presenter @Inject constructor(private val view: Screen1View, private val m: AccountInfo) : BasePresenter {
+class Screen1Presenter @Inject constructor(private val m: AccountInfo) : BasePresenter {
     private var f: MyFragment? = null
 
     override fun attachView(f: MyFragment) {
         this.f = f
+        val view = Screen1View(f)
         view.setIcon(m.iconId)
         view.setPosts("${m.posts}")
         view.setFollowing("${m.followers}")
