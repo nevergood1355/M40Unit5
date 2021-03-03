@@ -5,24 +5,36 @@ import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import com.skill_factory.unit5.ComponentSingleton.root
+import com.skill_factory.unit5.ComponentSingleton.screen1
+import com.skill_factory.unit5.ComponentSingleton.screen1Component
 import dagger.*
 import javax.inject.Inject
 import javax.inject.Scope
 import javax.inject.Singleton
 
 class MyApp : Application() {
-    val root = DaggerRootComponent.factory().create(this)
-    val screen1 = MyFragment().apply { retainInstance = true }
-    val screen1Component by lazy { root.screen1Component.build() }
+
+    override fun onCreate() {
+        super.onCreate()
+        root =  DaggerRootComponent.factory().create(this)
+        screen1Component = root?.screen1Component?.build()
+    }
+}
+
+object ComponentSingleton{
+    var root : RootComponent? = null
+    var screen1Component : Screen1Component? = null
+
+    var screen1 = MyFragment()
 }
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val app = (application as MyApp)
-        app.screen1Component.inject(app.screen1)
+        screen1Component?.inject(screen1)
         setContentView(R.layout.activity_main)
-        supportFragmentManager.beginTransaction().replace(R.id.root,app.screen1).commit()
+        supportFragmentManager.beginTransaction().replace(R.id.root, screen1).commit()
     }
 }
