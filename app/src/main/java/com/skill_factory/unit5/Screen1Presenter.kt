@@ -4,7 +4,6 @@ import androidx.annotation.DrawableRes
 import javax.inject.Inject
 
 
-@ScreenScope
 interface BasePresenter {
     fun attachView(view: ScreenView)
     fun detach()
@@ -17,7 +16,7 @@ interface ScreenView {
     fun setFollowing(text: String)
 }
 
-@ScreenScope
+
 class Screen1Presenter @Inject constructor(private val m: AccountInfo) : BasePresenter {
     var view: ScreenView? = null
 
