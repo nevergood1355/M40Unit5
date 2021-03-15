@@ -11,7 +11,6 @@ interface Screen1Component {
 
     @Subcomponent.Builder
     interface Builder {
-
         fun build(): Screen1Component
     }
 

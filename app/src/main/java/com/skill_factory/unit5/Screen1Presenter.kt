@@ -21,6 +21,7 @@ class Screen1Presenter @Inject constructor(private val m: AccountInfo) : BasePre
     var view: ScreenView? = null
 
     override fun attachView(view: ScreenView) {
+        this.view = view
         view.setIcon(m.iconId)
         view.setPosts("${m.posts}")
         view.setFollowing("${m.followers}")
